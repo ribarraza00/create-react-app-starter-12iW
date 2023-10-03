@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones Disponibles y Reservadas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/estilos.css">
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Hotel Paradise</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="quienes_somos.html">Quiénes Somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="habitaciones.html">Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/habitaciones_lista.html">Reservas disponibles</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="container mt-5">
+    <h1>Habitaciones Disponibles y Reservadas</h1>
+
+    <h2>Habitaciones Disponibles</h2>
+    <div class="habitaciones-lista" id="habitaciones-disponibles">
+        <!-- Las habitaciones disponibles se llenarán con JavaScript -->
+    </div>
+
+    <h2>Habitaciones Reservadas</h2>
+    <div class="habitaciones-lista" id="habitaciones-reservadas">
+        <!-- Las habitaciones reservadas se llenarán con JavaScript -->
+    </div>
+</div>
+
+
+<script>
+    // Lista de habitaciones
+    const habitaciones = [
+        { nombre: 'Habitación Estándar', descripcion: 'Descripción de la habitación estándar.', precio: 100, estado: 'disponible' },
+        { nombre: 'Suite de Lujo', descripcion: 'Descripción de la suite de lujo.', precio: 200, estado: 'disponible' },
+        { nombre: 'Habitación de Lujo', descripcion: 'Descripción de la habitación de lujo.', precio: 150, estado: 'reservada' }
+    ];
+
+    // Función para llenar la lista de habitaciones
+    function llenarListaHabitaciones() {
+        const disponiblesContainer = document.getElementById('habitaciones-disponibles');
+        const reservadasContainer = document.getElementById('habitaciones-reservadas');
+
+        habitaciones.forEach(habitacion => {
+            const habitacionElement = document.createElement('div');
+            habitacionElement.classList.add('habitacion');
+            habitacionElement.innerHTML = `
+                <h3>${habitacion.nombre}</h3>
+                <p>${habitacion.descripcion}</p>
+                <p>Precio: $${habitacion.precio} por noche</p>
+                <p>Estado: ${habitacion.estado}</p>
+            `;
+
+            if (habitacion.estado === 'disponible') {
+                disponiblesContainer.appendChild(habitacionElement);
+            } else if (habitacion.estado === 'reservada') {
+                reservadasContainer.appendChild(habitacionElement);
+            }
+        });
+    }
+
+    // Llama a la función para llenar la lista de habitaciones
+    llenarListaHabitaciones();
+
+
+</script>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
