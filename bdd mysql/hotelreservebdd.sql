@@ -1,0 +1,2 @@
+ALTER TABLE Reservas
+ADD COLUMN MedioID INT;
