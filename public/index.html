@@ -3,54 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva de Hotel</title>
-    <link rel="stylesheet" href="/src/estilos.css">
+    <title>Bienvenido a Hotel Reserve</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Hotel Reserve +</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/public/index.html">Inicio <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/public/quienes_somos.html">Quiénes Somos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/public/habitaciones.html">Habitaciones</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/public/habitaciones_lista.html">Reservas disponibles</a>
-            </li>
-        </ul>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                <h1>Bienvenido a Hotel Reserve</h1>
+                <p>Reserva tu habitación de manera fácil y segura.</p>
+                <a href="./registro.html" class="btn btn-primary">Reservar Ahora</a>
+            </div>
+        </div>
     </div>
-</nav>
-
-    <h1 class="text-center">Reserva tu habitación</h1>
-    <form action="habitaciones.html" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br><br>
-
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="checkin">Fecha de Check-In:</label>
-        <input type="date" id="checkin" name="checkin" required><br><br>
-
-        <label for="checkout">Fecha de Check-Out:</label>
-        <input type="date" id="checkout" name="checkout" required><br><br>
-
-        <input type="submit" value="Reservar">
-    </form>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

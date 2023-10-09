@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Hotel Reserve +</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./index.html">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./quienes_somos.html">Quiénes Somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./habitaciones.html">Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./habitaciones_lista.html">Reservas disponibles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./registro.html">Iniciar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="text-center">Formulario de Clientes</h1>
+        <div class="row mt-4">
+            <div class="col-md-6 offset-md-3">
+                <div id="clientes"></div>
+                <input type="text" id="nombre" class="form-control mb-3" placeholder="Nombre">
+                <input type="text" id="apellido" class="form-control mb-3" placeholder="Apellido">
+                <input type="email" id="email" class="form-control mb-3" placeholder="Correo Electrónico">
+                <input type="tel" id="telefono" class="form-control mb-3" placeholder="Teléfono">
+                <button id="crear" class="btn btn-primary">Crear Cliente</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+    <script>
+        (async function(){ 
+            const res = await fetch("http://localhost:3000/api/clientes")
+            const clientes = await res.json()
+            let html = ``;
+            html += `<table class="table table-striped">
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo Electrónico</th>
+                <th>Teléfono</th>
+              </tr>`
+              for (const cliente of clientes) {
+            html +=   `<tr>
+                <td>${cliente.Nombre}</td>
+                <td>${cliente.Apellido}</td>
+                <td>${cliente.Email}</td>
+                <td>${cliente.Telefono}</td>
+              </tr>`
+              }
+            html += `</table>`;
+    
+            document.querySelector("#clientes").innerHTML = html;
+    
+            document.querySelector("#crear").addEventListener("click", async function() {
+                const nombre =  document.querySelector("#nombre").value;
+                const apellido =  document.querySelector("#apellido").value;
+                const email = document.querySelector("#email").value; 
+                const telefono =  document.querySelector("#telefono").value;
+    
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+    
+                var raw = JSON.stringify({
+                "Nombre": nombre,
+                "Apellido": apellido,
+                "Email": email,
+                "Telefono": telefono
+                });
+    
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+                };
+                const resCreate = await fetch("http://localhost:3000/api/clientes/create", requestOptions)
+                const newClient = resCreate.json()
+            });
+        })();
+    </script>
+</body>
+</html>
+
+
+
+
